@@ -11,6 +11,13 @@ public:
     void countpairs(vector <int> &nums, int low, int mid, int high, long long &cnt) {
         for (int i = low; i <= mid; i++) {
             long long target = floor((nums[i] - 1LL) / 2.0);//handles negative numbers and positive numbers properly
+            //----------------------------------------------CAN ALSO KEEP THE BELOW CODE INSTEAD OF THE ABOVE LINE------------------------------------
+            // if (nums[i] & 1) {
+            //     if (nums[i] > 0)
+            //     target = (nums[i]/2.0);
+            //     else
+            //     target = (nums[i]/2.0) - 1;//as we know negative numbers have higher value when coming near to 0, and as it wont correctly yields we will keep -1 as extra eg: -3/2 results -1 instead of -2 (wanted is -2)
+            // }
             auto it = upper_bound(nums.begin() + mid + 1, nums.begin() + high + 1, target) - nums.begin();
             cnt += (it - (mid + 1));
         }
